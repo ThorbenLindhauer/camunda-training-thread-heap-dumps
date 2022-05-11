@@ -1,0 +1,26 @@
+{
+  "mappings" : [ {
+    "id" : "636ac117-dc0f-451e-bd29-d389102bc03d",
+    "name" : "support-training stub 1",
+    "request" : {
+      "url" : "/dosomething",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "\nBody content for stub 1\n\n",
+      "headers" : { },
+      "delayDistribution" : {
+        "type" : "fixed",
+        "milliseconds" : 3600000
+      }
+    },
+    "uuid" : "636ac117-dc0f-451e-bd29-d389102bc03d",
+    "persistent" : true,
+    "priority" : 5,
+    "postServeActions" : [ ]
+  } ],
+  "meta" : {
+    "total" : 1
+  }
+}

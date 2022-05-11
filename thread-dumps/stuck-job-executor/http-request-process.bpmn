@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_13bj0ak" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.0.0-alpha.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.16.0">
+  <bpmn:process id="http-request-process" isExecutable="true">
+    <bpmn:startEvent id="http-request">
+      <bpmn:outgoing>Flow_0ln9ho3</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0ln9ho3" sourceRef="http-request" targetRef="Activity_1bv9wtq" />
+    <bpmn:scriptTask id="Activity_1bv9wtq" name="Make HTTP Request" camunda:asyncBefore="true" scriptFormat="groovy">
+      <bpmn:incoming>Flow_0ln9ho3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1h1qwem</bpmn:outgoing>
+      <bpmn:script>// GET
+def get = new URL("http://localhost:9001/dosomething").openConnection();
+def getRC = get.getResponseCode();
+println(getRC);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="Event_1c1orhz">
+      <bpmn:incoming>Flow_1h1qwem</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1h1qwem" sourceRef="Activity_1bv9wtq" targetRef="Event_1c1orhz" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="http-request-process">
+      <bpmndi:BPMNEdge id="Flow_1h1qwem_di" bpmnElement="Flow_1h1qwem">
+        <di:waypoint x="320" y="117" />
+        <di:waypoint x="352" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ln9ho3_di" bpmnElement="Flow_0ln9ho3">
+        <di:waypoint x="188" y="117" />
+        <di:waypoint x="220" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="http-request">
+        <dc:Bounds x="152" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hpdiwc_di" bpmnElement="Activity_1bv9wtq">
+        <dc:Bounds x="220" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1c1orhz_di" bpmnElement="Event_1c1orhz">
+        <dc:Bounds x="352" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
