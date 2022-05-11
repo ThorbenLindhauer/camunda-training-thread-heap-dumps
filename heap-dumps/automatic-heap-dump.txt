@@ -1,0 +1,6 @@
+java \
+-Xms512M \
+-Xmx1024M \
+-XX:+HeapDumpOnOutOfMemoryError \
+-XX:HeapDumpPath=./dump/heap-dump.hprof \
+-jar ./my-spring-boot-project.jar
